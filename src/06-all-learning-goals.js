@@ -93,14 +93,6 @@ function generateSalesReport(salesData) {
         totalSales: highestSalesDaySale,
     }
 
-    const objectt = {
-        totalSales: totalSales,
-        bestSellingItem: bestSellingItem,
-        highestSalesDay: highestSalesDayObject,
-    }
-
-    console.log("Mine", objectt);
-
     return {
         totalSales: totalSales,
         bestSellingItem: bestSellingItem,
