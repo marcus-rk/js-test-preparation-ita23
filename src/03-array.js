@@ -9,7 +9,8 @@
  * console.log(lastElement); // 20
  */
 function getLastElement(array) {
-
+    const lastElementIndex = array.length-1;
+    return array[lastElementIndex];
 }
 
 
@@ -25,7 +26,14 @@ function getLastElement(array) {
  * // numbers will be [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
  */
 function returnEvenNumbers(start, finish) {
+    let evenNumbersArray = [];
 
+    for (let i = start; i <= finish; i++) {
+        if (i % 2 === 0)
+            evenNumbersArray.push(i);
+    }
+
+    return evenNumbersArray;
 }
 
 
@@ -40,7 +48,14 @@ function returnEvenNumbers(start, finish) {
  * const anotherSquares = squareArray([-1, -2, 3]); // anotherSquares will be [1, 4, 9]
  */
 function squareArray(array) {
+    let squareArray = [];
 
+    array.forEach((number) => {
+        const squareNumber = Math.pow(number, 2);
+        squareArray.push(squareNumber);
+    });
+
+    return squareArray;
 }
 
 /**
@@ -54,5 +69,14 @@ function squareArray(array) {
  * const anotherMax = findMax([-1, -2, 3]); // anotherMax will be 3
  */
 function findMax(array) {
+    let currentMax = array[0];
 
+    // start at index 1
+    for (let i = 1; i < array.length; i++) {
+        const currentNumber = array[i];
+        if (currentNumber > currentMax)
+            currentMax = currentNumber
+    }
+
+    return currentMax;
 }
