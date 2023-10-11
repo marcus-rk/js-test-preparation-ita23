@@ -40,7 +40,52 @@ const weeklySalesDataExample = [
  * // Outputs { totalSales: 55, bestSellingItem: 'Banana', highestSalesDay: {date: '2023-09-26', totalSales: 30} }
  */
 
-function generateSalesReport(weeklySalesData) {
+function generateSalesReport(salesData) {
+    // total sales
+    let totalSales = 0;
 
+    // best-selling item
+    let bestSellingItem;
+
+    // day with the highest sales
+    let highestSalesDay;
+
+    salesData.forEach((day) => {
+
+        // find best-selling item that day
+        // and calculate sales for that day
+        let dateBestSeller = day.sales[0].item;
+        let dateSales = 0;
+
+        for (const product of day.sales) {
+            const itemPrice = product.price;
+            const itemQuantity = product.quantity;
+            const itemSales = itemPrice * itemQuantity;
+
+            // add to total sales that day
+            dateSales += itemSales;
+
+            if (itemSales > dateBestSeller)
+                dateBestSeller = product.item;
+        }
+
+        // check if best-selling item overall
+        if (dateBestSeller > bestSellingItem)
+            bestSellingItem = dateBestSeller;
+
+
+        // check if highestsales that day
+        if (dateSales > highestSalesDay)
+            highestSalesDay = dateSales;
+
+        // add to total sales overall
+        totalSales += dateSales;
+    });
+
+    return {
+        totalSales: totalSales,
+        bestSellingItem: bestSellingItem,
+        highestSalesDay: highestSalesDay
+    }
 }
 

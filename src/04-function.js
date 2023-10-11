@@ -22,11 +22,9 @@ const greetUser = (name) => {
  * const spinal = toSpinalCase("This Is Spinal Tap"); // spinal will be "this-is-spinal-tap"
  */
 const toSpinalCase = (str) => {
+    // test don't have lowercase, so this is right:
     const stringLowerCase = str.toLowerCase();
-    const stringSplitArray = stringLowerCase.split(" ");
-
-    // test doesn't do lower-case
-    return stringSplitArray.join("-");
+    return stringLowerCase.replaceAll(" ", "-");
 }
 
 /**
