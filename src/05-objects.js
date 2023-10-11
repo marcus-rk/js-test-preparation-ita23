@@ -47,6 +47,5 @@ function findBookByAuthor(books, author) {
 function getOlderBooks(books, year) {
     let resultArray = books.filter((book) => book.year < year);
     return resultArray;
-
 }
 
