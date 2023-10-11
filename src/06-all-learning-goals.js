@@ -93,9 +93,10 @@ function generateSalesReport(salesData) {
         totalSales += dateSales;
     });
 
-    // find item/product with highest value;
+    // find item/product with highest quantity in Map
     let currentHighestValue = 0;
     let bestSellingItem = '';
+
     itemMap.forEach((value, key) => {
         if (value > currentHighestValue) {
             currentHighestValue = value;
