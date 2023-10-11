@@ -39,6 +39,6 @@ function determineLength(value) {
  * const result = concatenateWithDelimiter("Hello", "World", ", "); // result will be "Hello, World"
  */
 function concatenateWithDelimiter(a, b, delimiter) {
-    return[a,b].join(delimiter);
+    return [a,b].join(delimiter);
 }
 
