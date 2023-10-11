@@ -45,7 +45,6 @@ function generateSalesReport(salesData) {
     let totalSales = 0;
 
     // best-selling item / set object type
-    // let bestSellingItem = salesData[0].sales[0].item;
     let itemMap = new Map();
 
     // day with the highest sales / set object type
