@@ -41,14 +41,15 @@ const weeklySalesDataExample = [
  */
 
 function generateSalesReport(salesData) {
-    // total sales
+    // total sales / set datatype
     let totalSales = 0;
 
-    // best-selling item
-    let bestSellingItem;
+    // best-selling item / set object type
+    let bestSellingItem = salesData[0].sales[0].item;
 
-    // day with the highest sales
-    let highestSalesDay;
+    // day with the highest sales / set object type
+    let highestSalesDay = salesData[0];
+    let highestSalesDaySale = 0;
 
     salesData.forEach((day) => {
 
@@ -67,25 +68,52 @@ function generateSalesReport(salesData) {
 
             if (itemSales > dateBestSeller)
                 dateBestSeller = product.item;
+
+            if (dateSales > highestSalesDaySale) {
+                highestSalesDaySale = dateSales;
+                highestSalesDay = day;
+            }
         }
 
         // check if best-selling item overall
         if (dateBestSeller > bestSellingItem)
             bestSellingItem = dateBestSeller;
 
-
-        // check if highestsales that day
-        if (dateSales > highestSalesDay)
+        // check if highest-sales that day
+        if (dateSales > highestSalesDaySale) {
             highestSalesDay = dateSales;
+        }
 
         // add to total sales overall
         totalSales += dateSales;
     });
 
+    const highestSalesDayObject = {
+        date: highestSalesDay.date,
+        totalSales: highestSalesDaySale,
+    }
+
+    const objectt = {
+        totalSales: totalSales,
+        bestSellingItem: bestSellingItem,
+        highestSalesDay: highestSalesDayObject,
+    }
+
+    console.log("Mine", objectt);
+
     return {
         totalSales: totalSales,
         bestSellingItem: bestSellingItem,
-        highestSalesDay: highestSalesDay
+        highestSalesDay: highestSalesDayObject,
     }
 }
+
+/*
+const weeklySalesData2 = [
+    {date: '2023-09-25', sales: [{item: 'Apple', quantity: 30, price: 1}, {item: 'Banana', quantity: 20, price: 0.5}]},
+    {date: '2023-09-26', sales: [{item: 'Apple', quantity: 20, price: 1}, {item: 'Banana', quantity: 25, price: 0.5}]}]
+
+const report = generateSalesReport(weeklySalesData2);
+console.log("Result", report);
+*/
 
