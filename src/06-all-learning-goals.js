@@ -45,7 +45,8 @@ function generateSalesReport(salesData) {
     let totalSales = 0;
 
     // best-selling item / set object type
-    let bestSellingItem = salesData[0].sales[0].item;
+    // let bestSellingItem = salesData[0].sales[0].item;
+    let itemMap = new Map();
 
     // day with the highest sales / set object type
     let highestSalesDay = salesData[0];
@@ -66,10 +67,15 @@ function generateSalesReport(salesData) {
             // add to total sales that day
             dateSales += itemSales;
 
-            // if item sales if higher than current item
-            // set new best seller
-            if (itemSales > dateBestSeller)
-                dateBestSeller = product.item;
+            // add to item map
+            const itemKey = product.item;
+            const isExistingItem = itemMap.has(itemKey);
+
+            if (isExistingItem) {
+                itemMap.set(itemKey, itemMap.get(itemKey) + itemQuantity);
+            } else {
+                itemMap.set(itemKey, itemQuantity);
+            }
 
             // if date sales is new highest day sale
             // set new highest day sale and day
@@ -79,10 +85,6 @@ function generateSalesReport(salesData) {
             }
         }
 
-        // check if best-selling item overall
-        if (dateBestSeller > bestSellingItem)
-            bestSellingItem = dateBestSeller;
-
         // check if highest-sales that day
         if (dateSales > highestSalesDaySale) {
             highestSalesDay = dateSales;
@@ -90,6 +92,16 @@ function generateSalesReport(salesData) {
 
         // add to total sales overall
         totalSales += dateSales;
+    });
+
+    // find item/product with highest value;
+    let currentHighestValue = 0;
+    let bestSellingItem = '';
+    itemMap.forEach((value, key) => {
+        if (value > currentHighestValue) {
+            currentHighestValue = value;
+            bestSellingItem = key;
+        }
     });
 
     return {
