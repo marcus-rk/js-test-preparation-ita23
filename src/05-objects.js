@@ -8,7 +8,11 @@
  * console.log(myBook.title); // Outputs the title of the book
  */
 function createBook() {
-
+    return {
+        title: "title",
+        author: "author",
+        year: 2023,
+    }
 }
 
 
@@ -24,7 +28,8 @@ function createBook() {
  * console.log(result); // Outputs {title: "Sample", author: "John Doe", year: 2020}
  */
 function findBookByAuthor(books, author) {
-
+    const book = books.find((book) => book.author === author);
+    return book;
 }
 
 
@@ -40,6 +45,13 @@ function findBookByAuthor(books, author) {
  * console.log(oldBooks); // Outputs {title: "A", year: 1990}
  */
 function getOlderBooks(books, year) {
+    let resultArray = []
 
+    books.forEach((book) => {
+        if (book.year < year)
+            resultArray.push(book);
+    });
+
+    return resultArray;
 }
 
