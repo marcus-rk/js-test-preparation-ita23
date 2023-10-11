@@ -45,13 +45,8 @@ function findBookByAuthor(books, author) {
  * console.log(oldBooks); // Outputs {title: "A", year: 1990}
  */
 function getOlderBooks(books, year) {
-    let resultArray = []
-
-    books.forEach((book) => {
-        if (book.year < year)
-            resultArray.push(book);
-    });
-
+    let resultArray = books.filter((book) => book.year < year);
     return resultArray;
+
 }
 
