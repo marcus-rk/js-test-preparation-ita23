@@ -66,9 +66,13 @@ function generateSalesReport(salesData) {
             // add to total sales that day
             dateSales += itemSales;
 
+            // if item sales if higher than current item
+            // set new best seller
             if (itemSales > dateBestSeller)
                 dateBestSeller = product.item;
 
+            // if date sales is new highest day sale
+            // set new highest day sale and day
             if (dateSales > highestSalesDaySale) {
                 highestSalesDaySale = dateSales;
                 highestSalesDay = day;
@@ -88,15 +92,13 @@ function generateSalesReport(salesData) {
         totalSales += dateSales;
     });
 
-    const highestSalesDayObject = {
-        date: highestSalesDay.date,
-        totalSales: highestSalesDaySale,
-    }
-
     return {
         totalSales: totalSales,
         bestSellingItem: bestSellingItem,
-        highestSalesDay: highestSalesDayObject,
+        highestSalesDay: {
+            date: highestSalesDay.date,
+            totalSales: highestSalesDaySale
+        }
     }
 }
 
